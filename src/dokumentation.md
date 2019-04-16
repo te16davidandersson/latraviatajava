@@ -7,3 +7,6 @@ Spara antalet pengar och pasta alfredo man har i variabler, så att man måste j
 Arbetsprocess:
 2019-04-05
 Skriva planering, jag har gjort ett GUI form till spelet
+
+2019-04-12
+Skrev klassdiagram (försökte nästan), lade till connector mellan databasen och java i projektet.
