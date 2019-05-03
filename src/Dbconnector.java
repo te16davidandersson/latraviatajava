@@ -1,5 +1,8 @@
 import java.sql.*;
 
+/**
+ * fält/attribut/variabler
+ */
 class Dbconnector {
     public static final String PARAMS = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     public static final String DEFAULT_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
@@ -16,6 +19,10 @@ class Dbconnector {
         this.connection = createConnection();
     }
 
+    /**
+     * Skapar connection mellan databas och programmet
+     * @return
+     */
     public Connection createConnection() {
         Connection connection = null;
         try {
@@ -29,6 +36,11 @@ class Dbconnector {
         return connection;
     }
 
+    /**
+     * Får data från story databasen
+     * @param id
+     * @return
+     */
     public String getStory(int id){
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -46,9 +58,9 @@ class Dbconnector {
         return story;
     }
 
-    /*
-    Tar id och text från 2 fält i storylinks med samma storyid och kollar om de har jämnt eller ojämnt id
-    för att bestämma om de ska vara den vänstra eller högra knappen
+    /**
+     * Tar id och text från 2 fält i storylinks med samma storyid och kollar om de har jämnt eller ojämnt id
+     * för att bestämma om de ska vara den vänstra eller högra knappen
      */
     public String[] getButtonTexts(int id) {
         PreparedStatement ps = null;
