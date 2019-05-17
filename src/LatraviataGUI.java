@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Fält
@@ -42,11 +46,19 @@ public class LatraviataGUI {
         this.currentStory = 4;
         this.db = new Dbconnector();
         choice1.addActionListener(e -> updateButtons());
-        choice2.addActionListener(e -> updateButtons());
+        //choice2.addActionListener(e -> updateButtons());
         choice2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO SELECT target FROM storylinks WHERE storyid = this.currentStory AND id = this.currentStory * 2
+                PreparedStatement ps = null;
+                ResultSet rs = null;
+                try {
+                    ps = db.getConnection().prepareStatement("SELECT target FROM storylinks WHERE storyid = " + currentStory + " AND id = " + currentStory * 2);
+                    rs = ps.executeQuery();
+
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
                 updateButtons();
             }
         });
@@ -63,6 +75,3 @@ public class LatraviataGUI {
         choice2.setText(buttonTexts[1]);
     }
 }
-
-
-//TODO ändra nuvarande storyid när du trycker på knappen. Uppdatera texten när knappen trycks

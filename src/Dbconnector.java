@@ -37,9 +37,17 @@ class Dbconnector {
     }
 
     /**
+     * getter för connectorn
+     * @return returnar connectorn så jag kan använda den i GUI klassen
+     */
+    public Connection getConnection() {
+        return connection;
+    }
+
+    /**
      * Får data från story databasen
-     * @param id
-     * @return
+     * @param id id från story databasen
+     * @return returnar story
      */
     public String getStory(int id){
         PreparedStatement ps = null;
